@@ -1,6 +1,6 @@
 #+TITLE: Exjieba: Elixir verison of Jieba, a Chinese word segmentation module.
 ** Exjieba
-Elixir verison of Jieba Base on [[https://github.com/aszxqw/nodejieba/][nodejieba]].
+Elixir verison of Jieba Base on [[https://github.com/aszxqw/libcppjieba/][libcppjieba]].
 
 ** Usage
 #+BEGIN_SRC elixir
@@ -21,5 +21,5 @@ iex(2)> ExJieba.cut "小明硕士毕业于中国科学院计算所，后在日�
 - [ ] QuerySegment
 
 ** THANKS
-- [[https://github.com/aszxqw/nodejieba/][nodejieba]] by aszxqw
+- [[https://github.com/aszxqw/libcppjieba/][libcppjieb]] by aszxqw
 - [[https://github.com/fxsjy/jieba][jieba]] by SunJunyi
