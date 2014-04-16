@@ -1,0 +1,23 @@
+#+TITLE: Exjieba: Elixir verison of Jieba, a Chinese word segmentation module.
+** Exjieba
+Elixir verison of Jieba Base on [[https://github.com/aszxqw/nodejieba/][nodejieba]].
+
+** Usage
+#+BEGIN_SRC elixir
+Erlang R16B03-1 (erts-5.10.4) [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+
+Interactive Elixir (0.12.4) - press Ctrl+C to exit (type h() ENTER for help)
+iex(1)> ExJieba.cut "小明硕士毕业于中国科学院计算所，后在日本京都大学深造 "
+["小明", "硕士", "毕业", "于", "中国科学院", "计算所", "，", "后", "在", "日本京都大学", "深造"]
+#+END_SRC
+
+** TODO
+- [ ] custom dict
+- [ ] MPSegment
+- [ ] MixSegment
+- [ ] FullSegment
+- [ ] QuerySegment
+
+** THANKS
+- [[https://github.com/aszxqw/nodejieba/][nodejieba]] by aszxqw
+- [[https://github.com/fxsjy/jieba][jieba]] by SunJunyi

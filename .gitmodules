@@ -1,0 +1,3 @@
+[submodule "src/nodejieba"]
+	path = src/nodejieba
+	url = https://github.com/aszxqw/nodejieba.git

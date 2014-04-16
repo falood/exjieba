@@ -1,0 +1,11 @@
+/_build
+/deps
+/log
+erl_crash.dump
+*.ez
+*~
+\#*
+.\#*
+
+priv/segment.so
+priv/segment.so.dSYM
