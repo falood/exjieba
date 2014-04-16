@@ -5,8 +5,8 @@ defmodule ExJieba do
     priv_path = :code.priv_dir(:exjieba)
     path = Path.join(priv_path, 'segment')
 	  :erlang.load_nif(path, 1)
-    load_dict Path.join(priv_path, 'dict/jieba.dict.utf8'),
-              Path.join(priv_path, 'dict/hmm_model.utf8')
+    load_dict Path.join(priv_path, 'libcppjieba/dict/jieba.dict.utf8'),
+              Path.join(priv_path, 'libcppjieba/dict/hmm_model.utf8')
     {:ok, self}
   end
 

@@ -1,3 +1,3 @@
-[submodule "src/nodejieba"]
-	path = src/nodejieba
-	url = https://github.com/aszxqw/nodejieba.git
+[submodule "priv/libcppjieba"]
+	path = priv/libcppjieba
+	url = https://github.com/aszxqw/libcppjieba.git
