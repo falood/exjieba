@@ -7,7 +7,12 @@ CPPJIEBA_FLAGS=-I$(CPPJIEBA_PATH)
 CC?=clang
 CXX?=clang++
 EBIN_DIR=ebin
-OPTIONS=-dynamiclib -undefined dynamic_lookup -std=c++11 -DLOGGER_LEVEL=LL_ERROR
+
+ifeq ($(shell uname),Darwin)
+	OPTIONS=-dynamiclib -undefined dynamic_lookup -std=c++11
+else
+	OPTIONS=-lstdc++
+endif
 
 NIF_SRC=src/segment.cpp
 
@@ -16,7 +21,7 @@ all:
 
 priv/segment.so: libcppjieba_src
 	mkdir -p priv && \
-	$(CC) $(CFLAGS) $(ERLANG_FLAGS) $(CPPJIEBA_FLAGS) -shared $(OPTIONS) $(NIF_SRC) -o $@ 2>&1 >/dev/null
+	$(CC) $(CFLAGS) $(ERLANG_FLAGS) $(CPPJIEBA_FLAGS) -shared $(OPTIONS) -DLOGGER_LEVEL=LL_ERROR $(NIF_SRC) -o $@ 2>&1 >/dev/null
 
 libcppjieba_src:
 	git submodule update --init
