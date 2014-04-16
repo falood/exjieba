@@ -8,12 +8,12 @@ static ERL_NIF_TERM cut(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])
 {
     ErlNifBinary bin;
     enif_inspect_binary(env, argv[0], &bin);
-	char *s = new char[bin.size + 1];
-	memcpy(s, bin.data, bin.size);
+    char *s = new char[bin.size + 1];
+    memcpy(s, bin.data, bin.size);
     s[bin.size] = '\0';
 
-	std::vector<std::string> words;
-	segment.cut(s, words);
+    std::vector<std::string> words;
+    segment.cut(s, words);
 
     ERL_NIF_TERM r = enif_make_list(env, 0);
     ErlNifBinary h;
@@ -35,16 +35,14 @@ static ERL_NIF_TERM load_dict(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[
 {
     unsigned int len;
     enif_get_list_length(env, argv[0], &len);
-	char *words_dict = (char *)enif_alloc(++len);
+    char *words_dict = (char *)enif_alloc(++len);
     enif_get_string(env, argv[0], words_dict, len, ERL_NIF_LATIN1);
 
     enif_get_list_length(env, argv[1], &len);
-	char *chars_dict = (char *)enif_alloc(++len);
+    char *chars_dict = (char *)enif_alloc(++len);
     enif_get_string(env, argv[1], chars_dict, len, ERL_NIF_LATIN1);
 
     segment.init(words_dict, chars_dict);
-// free(words_dict);
-// free(chars_dict);
     return enif_make_atom(env, "ok\0");
 }
 
