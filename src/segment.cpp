@@ -8,8 +8,10 @@ static ERL_NIF_TERM cut(ErlNifEnv* env, int argc, const ERL_NIF_TERM argv[])
 {
     ErlNifBinary bin;
     enif_inspect_binary(env, argv[0], &bin);
-    char *s = (char*) bin.data;
+	char *s = new char[bin.size + 1];
+	memcpy(s, bin.data, bin.size);
     s[bin.size] = '\0';
+
 	std::vector<std::string> words;
 	segment.cut(s, words);
 
