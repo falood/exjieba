@@ -7,5 +7,4 @@ erl_crash.dump
 \#*
 .\#*
 
-priv/segment.so
-priv/segment.so.dSYM
+priv/

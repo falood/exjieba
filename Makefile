@@ -14,17 +14,30 @@ else
 	OPTIONS=-lstdc++
 endif
 
-NIF_SRC=src/segment.cpp
-
 all:
 	mix compile
-
-priv/segment.so: libcppjieba_src
-	mkdir -p priv && \
-	$(CC) $(CFLAGS) $(ERLANG_FLAGS) $(CPPJIEBA_FLAGS) -shared $(OPTIONS) -DLOGGER_LEVEL=LL_ERROR $(NIF_SRC) -o $@ 2>&1 >/dev/null
 
 libcppjieba_src:
 	git submodule update --init
 
+segment: clean libcppjieba_src priv/mp_segment.so priv/hmm_segment.so priv/mix_segment.so priv/query_segment.so
+
+priv/mp_segment.so:
+	mkdir -p priv && \
+	$(CC) $(CFLAGS) $(ERLANG_FLAGS) $(CPPJIEBA_FLAGS) -shared $(OPTIONS) -DLOGGER_LEVEL=LL_ERROR src/mp_segment.cpp -o $@ 2>&1 >/dev/null
+
+priv/mix_segment.so:
+	mkdir -p priv && \
+	$(CC) $(CFLAGS) $(ERLANG_FLAGS) $(CPPJIEBA_FLAGS) -shared $(OPTIONS) -DLOGGER_LEVEL=LL_ERROR src/mix_segment.cpp -o $@ 2>&1 >/dev/null
+
+priv/hmm_segment.so:
+	mkdir -p priv && \
+	$(CC) $(CFLAGS) $(ERLANG_FLAGS) $(CPPJIEBA_FLAGS) -shared $(OPTIONS) -DLOGGER_LEVEL=LL_ERROR src/hmm_segment.cpp -o $@ 2>&1 >/dev/null
+
+priv/query_segment.so:
+	mkdir -p priv && \
+	$(CC) $(CFLAGS) $(ERLANG_FLAGS) $(CPPJIEBA_FLAGS) -shared $(OPTIONS) -DLOGGER_LEVEL=LL_ERROR src/query_segment.cpp -o $@ 2>&1 >/dev/null
+
+
 clean:
-	rm -rf priv/segment.*
+	rm -rf priv/*_segment.*
