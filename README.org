@@ -1,5 +1,4 @@
-#+TITLE: Exjieba: Elixir verison of Jieba, a Chinese word segmentation module.
-** Exjieba
+** Exjieba [[https://travis-ci.org/falood/exjieba/][file:https://api.travis-ci.org/falood/exjieba.png?branch=master]]
 Elixir verison of Jieba Base on [[https://github.com/aszxqw/libcppjieba/][libcppjieba]].
 
 ** Usage
