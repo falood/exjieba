@@ -10,7 +10,7 @@ defmodule Exjieba.Mixfile do
   def project do
     [ app: :exjieba,
       version: "0.0.1",
-      elixir: "~> 0.13.0",
+      elixir: "~> 0.13.0 or ~> 0.14.0",
       compilers: [ :segment, :elixir, :app ],
       deps: deps
     ]
