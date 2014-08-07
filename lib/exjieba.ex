@@ -1,5 +1,5 @@
 defmodule ExJieba do
-  use Application.Behaviour
+  use Application
 
   def start(_, _) do
     {:ok, self}
