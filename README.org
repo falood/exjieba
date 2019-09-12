@@ -3,11 +3,23 @@ Elixir verison of Jieba Base on [[https://github.com/aszxqw/libcppjieba/][libcpp
 
 ** Usage
 #+BEGIN_SRC elixir
-Erlang 17 (erts-6.0) [source] [64-bit] [smp:4:4] [async-threads:10] [hipe] [kernel-poll:false] [dtrace]
+Erlang/OTP 22 [erts-10.4.4] [source] [64-bit] [smp:8:8] [ds:8:8:10] [async-threads:1] [hipe]
 
-Interactive Elixir (0.13.1) - press Ctrl+C to exit (type h() ENTER for help)
-iex(1)> ExJieba.MixSegment.cut "小明硕士毕业于中国科学院计算所，后在日本京都大学深造 "
-["小明", "硕士", "毕业", "于", "中国科学院", "计算所", "，", "后", "在", "日本京都大学", "深造"]
+rm -rf priv/*_segment.*
+git submodule update --init
+mkdir -p priv && \
+cc -g -fPIC -O3 -I/home/falood/.asdf/installs/erlang/22.0.7/erts-10.4.4/include -Ipriv/libcppjieba/include -shared -lstdc++ -DLOGGER_LEVEL=LL_ERROR src/mp_segment.cpp -o priv/mp_segment.so 2>&1 >/dev/null
+mkdir -p priv && \
+cc -g -fPIC -O3 -I/home/falood/.asdf/installs/erlang/22.0.7/erts-10.4.4/include -Ipriv/libcppjieba/include -shared -lstdc++ -DLOGGER_LEVEL=LL_ERROR src/hmm_segment.cpp -o priv/hmm_segment.so 2>&1 >/dev/null
+mkdir -p priv && \
+cc -g -fPIC -O3 -I/home/falood/.asdf/installs/erlang/22.0.7/erts-10.4.4/include -Ipriv/libcppjieba/include -shared -lstdc++ -DLOGGER_LEVEL=LL_ERROR src/mix_segment.cpp -o priv/mix_segment.so 2>&1 >/dev/null
+mkdir -p priv && \
+cc -g -fPIC -O3 -I/home/falood/.asdf/installs/erlang/22.0.7/erts-10.4.4/include -Ipriv/libcppjieba/include -shared -lstdc++ -DLOGGER_LEVEL=LL_ERROR src/query_segment.cpp -o priv/query_segment.so 2>&1 >/dev/null
+Interactive Elixir (1.9.1) - press Ctrl+C to exit (type h() ENTER for help)
+iex(1)> ExJieba.MixSegment.cut "工信处女干事每月经过下属科室都要亲口交代24口交换机等技术性器件的安装工作"
+["工信处", "女干事", "每月", "经过", "下属", "科室", "都", "要",
+ "亲口", "交代", "24", "口", "交换机", "等", "技术性", "器件",
+ "的", "安装", "工作"]
 #+END_SRC
 
 ** TODO_LIST
