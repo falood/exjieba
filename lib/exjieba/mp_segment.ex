@@ -1,11 +1,12 @@
 defmodule ExJieba.MPSegment do
-  def init do
+  @on_load :load_nif
+
+  def load_nif do
     priv_path = :code.priv_dir(:exjieba)
     path = Path.join(priv_path, "mp_segment")
-	  :erlang.load_nif(path, 0)
-    dict_path = [ priv_path, "libcppjieba/dict/jieba.dict.utf8"
-                ] |> Path.join |> to_char_list
-    load_dict(dict_path |> to_char_list)
+    :erlang.load_nif(path, 0)
+    dict_path = [priv_path, "libcppjieba/dict/jieba.dict.utf8"] |> Path.join() |> to_charlist()
+    load_dict(dict_path |> to_charlist)
   end
 
   defp load_dict(_) do

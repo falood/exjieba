@@ -2,6 +2,6 @@ defmodule ExJieba do
   use Application
 
   def start(_, _) do
-    {:ok, self}
+    {:ok, self()}
   end
 end
